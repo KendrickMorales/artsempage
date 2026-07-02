@@ -43,7 +43,7 @@
           <div class="hero-copy reveal">
             <p class="eyebrow">Race-Ready Fabrication</p>
             <h1>
-              Custom cages that look brutal, fit perfect, and take abuse.
+              Heavy-duty custom cages made to fit and made to last.
             </h1>
             <p class="lead">
               artsemfab builds motorsport-focused cages and metalwork with tight
@@ -54,29 +54,18 @@
               <a class="btn btn-ghost" href="#work">View Projects</a>
             </div>
           </div>
-          <div class="hero-card reveal" aria-label="Featured cage build details">
-            <p class="hero-card-kicker">Featured Build</p>
-            <h2>6-Point DOM Cage</h2>
-            <ul class="hero-specs">
-              <li>
-                <span class="stat-value">DOM</span>
-                <span class="stat-label">1.75 x .120 tubing</span>
-              </li>
-              <li>
-                <span class="stat-value">TIG</span>
-                <span class="stat-label">Precise and clean joints</span>
-              </li>
-              <li>
-                <span class="stat-value">CAD</span>
-                <span class="stat-label">Measured for exact fitment</span>
-              </li>
+          <aside class="hero-side reveal" aria-label="Build highlights and booking info">
+            <h2>Build Highlights</h2>
+            <ul class="hero-points">
+              <li>DOM and chromoly options for your chassis and use case</li>
+              <li>Tight fitment with clean welds and smart bar placement</li>
+              <li>One-off mounts, brackets, and reinforcement add-ons</li>
             </ul>
-            <div class="hero-tags">
-              <span>Chassis Tie-Ins</span>
-              <span>Harness Bar</span>
-              <span>X-Brace</span>
+            <div class="hero-meta">
+              <p><strong>Typical lead time:</strong> 2-4 weeks after final specs</p>
+              <p><strong>Service area:</strong> Local drop-off and nationwide shipping quotes</p>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
@@ -166,22 +155,56 @@
 
       <section id="contact" class="section">
         <div class="container contact-card reveal">
-          <div>
+          <div class="contact-copy">
             <p class="eyebrow">Let’s Build</p>
             <h2>Ready to start your project?</h2>
             <p>
               Send me details about your vehicle and what you need fabricated.
               I will reply with next steps and timing.
             </p>
-          </div>
-          <div class="contact-actions">
-            <a class="btn btn-primary" href="mailto:you@example.com"
-              >Email Me</a
-            >
-            <a class="btn btn-ghost" href="https://instagram.com" target="_blank" rel="noreferrer"
+            <a
+              class="btn btn-ghost"
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
               >Instagram</a
             >
           </div>
+          <form
+            class="contact-form"
+            action="https://formsubmit.co/kendrick.gmo@gmail.com"
+            method="POST"
+            id="contact-form"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New build inquiry from artsemfab.com"
+            />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="vehicle">Vehicle</label>
+            <input id="vehicle" name="vehicle" type="text" />
+
+            <label for="details">Project details</label>
+            <textarea
+              id="details"
+              name="details"
+              rows="4"
+              placeholder="Tell me what you want built."
+              required
+            ></textarea>
+
+            <button class="btn btn-primary" type="submit">Send Inquiry</button>
+            <p id="contact-form-status" class="contact-form-status" aria-live="polite"></p>
+          </form>
         </div>
       </section>
     </main>
