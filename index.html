@@ -1,178 +1,387 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Custom fabrication and cage builds by artsemfab."
+      content="Custom roll cages by Artsemfab. Every car is 3D scanned and the cage is designed to that scan before a tube is cut, so it fits your chassis, not a template."
     />
-    <title>artsemfab | Custom Cage Builds</title>
+    <title>Artsemfab | Scanned, designed, welded to your car</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16.png" />
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
   <body>
-    <div class="bg-grid" aria-hidden="true"></div>
-    <div class="bg-glow bg-glow-a" aria-hidden="true"></div>
-    <div class="bg-glow bg-glow-b" aria-hidden="true"></div>
-
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="#top">ARTSEMFAB</a>
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="#work">Work</a>
+        <a class="brand" href="#top">ARTSEM<span>FAB</span></a>
+        <nav id="site-nav" class="site-nav" aria-label="Main navigation">
           <a href="#process">Process</a>
+          <a href="#work">Work</a>
           <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <a href="#pricing">Pricing</a>
+          <a class="nav-cta" href="#request">Request a build</a>
         </nav>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
 
     <main id="top">
-      <section class="hero section">
+      <section class="hero">
         <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <p class="eyebrow">Race-Ready Fabrication</p>
-            <h1>
-              Heavy-duty custom cages made to fit and made to last.
-            </h1>
+          <div class="hero-copy">
+            <p class="label">Custom roll cages &middot; Minnesota</p>
+            <h1>Scanned. Designed. Welded to<br /> <em>your car.</em></h1>
             <p class="lead">
-              artsemfab builds motorsport-focused cages and metalwork with tight
-              fitment, clean welds, and no cookie-cutter shortcuts.
+              Your shell is 3D scanned first, and the cage is routed against that
+              scan before a tube is cut. What gets welded in was drawn for your
+              chassis, not adapted from somebody else's.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Start a Build</a>
-              <a class="btn btn-ghost" href="#work">View Projects</a>
+              <a class="btn btn-primary" href="#request">Request a build</a>
+              <a class="btn btn-line" href="#process">How it fits</a>
             </div>
           </div>
-          <aside class="hero-side reveal" aria-label="Build highlights and booking info">
-            <h2>Build Highlights</h2>
-            <ul class="hero-points">
-              <li>DOM and chromoly options for your chassis and use case</li>
-              <li>Tight fitment with clean welds and smart bar placement</li>
-              <li>One-off mounts, brackets, and reinforcement add-ons</li>
-            </ul>
-            <div class="hero-meta">
-              <p><strong>Typical lead time:</strong> 2-4 weeks after final specs</p>
-              <p><strong>Service area:</strong> Local drop-off and nationwide shipping quotes</p>
-            </div>
-          </aside>
-        </div>
-      </section>
 
-      <section id="work" class="section">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow">Selected Work</p>
-            <h2>Cage Builds & Fabrication Projects</h2>
-          </div>
-          <div class="project-grid">
-            <article class="project-card reveal">
-              <div class="project-media project-media-a" aria-hidden="true"></div>
-              <div class="project-content">
-                <h3>Street/Track 6-Point Cage</h3>
-                <p>
-                  Tight tube routing, clean node transitions, and strong tie-ins
-                  for mixed street/track duty.
-                </p>
-              </div>
-            </article>
-            <article class="project-card reveal">
-              <div class="project-media project-media-b" aria-hidden="true"></div>
-              <div class="project-content">
-                <h3>Rear Half-Cage + Harness Setup</h3>
-                <p>
-                  Lightweight rear setup with proper bar geometry and clean
-                  interior integration.
-                </p>
-              </div>
-            </article>
-            <article class="project-card reveal">
-              <div class="project-media project-media-c" aria-hidden="true"></div>
-              <div class="project-content">
-                <h3>Custom Mounts and Brackets</h3>
-                <p>
-                  One-off seat, harness, and support brackets built for exact
-                  tolerances and repeatability.
-                </p>
-              </div>
-            </article>
-          </div>
+          <figure class="hero-sheet">
+            <div class="view view-scan">
+              <span class="view-tag">View A &middot; Scan + CAD</span>
+              <img
+                class="render"
+                src="./assets/web/e90-scan.jpg"
+                alt="3D scan of a BMW E90 shell with the custom cage modelled inside it"
+                width="1800"
+                height="919"
+                fetchpriority="high"
+              />
+            </div>
+            <div class="view view-build">
+              <img
+                src="./assets/web/e90-build.jpg"
+                alt="The finished cage welded into the same E90"
+                width="1054"
+                height="1400"
+              />
+              <span class="view-tag">View B &middot; As built</span>
+            </div>
+            <div class="dim" aria-hidden="true"><span>Same chassis</span></div>
+            <figcaption class="hero-caption">
+              <span>BMW E90</span>
+              <span>Scan &rarr; design &rarr; build</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
       <section id="process" class="section">
         <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow">How I Work</p>
-            <h2>From Vision to Welds</h2>
+          <header class="section-head reveal">
+            <p class="label">Process</p>
+            <h2>Why it fits</h2>
+            <p>
+              No two shells are identical, even the same model: seams, pillars
+              and old repairs move things. So the cage starts from a scan of your
+              car.
+            </p>
+          </header>
+
+          <ol class="steps">
+            <li class="step reveal">
+              <img
+                class="render"
+                src="./assets/web/cup-scan.jpg"
+                alt="Scanned cup car shell with its cage modelled in red"
+                width="1600"
+                height="970"
+                loading="lazy"
+              />
+              <div class="step-text">
+                <span class="step-no">01</span>
+                <h3>Scan</h3>
+                <p>
+                  The stripped shell is 3D scanned, pillars, floor and roof rails
+                  included, before any tube is bent.
+                </p>
+              </div>
+            </li>
+            <li class="step reveal">
+              <img
+                class="render"
+                src="./assets/web/porsche-scan.jpg"
+                alt="Porsche shell scan with a full cage designed against it"
+                width="1600"
+                height="926"
+                loading="lazy"
+              />
+              <div class="step-text">
+                <span class="step-no">02</span>
+                <h3>Design</h3>
+                <p>
+                  The cage is routed in CAD against that scan: tie-in points, door
+                  bars, seat and helmet clearance, in DOM or chromoly to suit how
+                  the car is used.
+                </p>
+              </div>
+            </li>
+            <li class="step reveal">
+              <img
+                src="./assets/web/frs-build.jpg"
+                alt="Finished cage welded into an FR-S"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+              <div class="step-text">
+                <span class="step-no">03</span>
+                <h3>Build</h3>
+                <p>
+                  Tubes are bent and welded to the model, so the cage lands where
+                  it was drawn: tight to the body, clean joints, built to your
+                  class rules where they apply.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="work" class="section">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="label">Work</p>
+            <h2>Recent builds</h2>
+          </header>
+
+          <div class="sheets">
+            <article class="sheet sheet-tall reveal">
+              <img
+                src="./assets/web/e90-build.jpg"
+                alt="Custom cage welded into a BMW E90, seen through the door opening"
+                width="1054"
+                height="1400"
+                loading="lazy"
+              />
+              <dl class="title-block">
+                <div><dt>Chassis</dt><dd>BMW E90</dd></div>
+                <div><dt>Scope</dt><dd>Cage &middot; scanned, designed, built</dd></div>
+              </dl>
+            </article>
+            <article class="sheet reveal">
+              <img
+                src="./assets/web/frs-build.jpg"
+                alt="Cage with door bars inside a white FR-S"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+              <dl class="title-block">
+                <div><dt>Chassis</dt><dd>Scion FR-S</dd></div>
+                <div><dt>Scope</dt><dd>Cage build</dd></div>
+              </dl>
+            </article>
+            <article class="sheet reveal">
+              <img
+                src="./assets/web/track-build.jpg"
+                alt="Cage in an orange track car, seen from the rear with the seat fitted"
+                width="1400"
+                height="1052"
+                loading="lazy"
+              />
+              <dl class="title-block">
+                <div><dt>Chassis</dt><dd>Track car</dd></div>
+                <div><dt>Scope</dt><dd>Cage build</dd></div>
+              </dl>
+            </article>
+            <article class="sheet reveal">
+              <img
+                class="render"
+                src="./assets/web/porsche-scan.jpg"
+                alt="Porsche shell scan with its cage design"
+                width="1600"
+                height="926"
+                loading="lazy"
+              />
+              <dl class="title-block">
+                <div><dt>Chassis</dt><dd>Porsche</dd></div>
+                <div><dt>Scope</dt><dd>Cage design on scan</dd></div>
+              </dl>
+            </article>
+            <article class="sheet reveal">
+              <img
+                class="render"
+                src="./assets/web/cup-scan.jpg"
+                alt="Cup car shell scan with its cage design"
+                width="1600"
+                height="970"
+                loading="lazy"
+              />
+              <dl class="title-block">
+                <div><dt>Chassis</dt><dd>Cup car</dd></div>
+                <div><dt>Scope</dt><dd>Cage design on scan</dd></div>
+              </dl>
+            </article>
           </div>
-          <div class="process-grid">
-            <article class="process-step reveal">
-              <span>01</span>
-              <h3>Consult</h3>
-              <p>We discuss your goal, use case, and safety requirements.</p>
+
+          <h3 class="sub-head reveal">Other fabrication</h3>
+          <div class="sheets sheets-two">
+            <article class="sheet reveal">
+              <img
+                src="./assets/web/ls-mount.jpg"
+                alt="Custom LS engine mount, shown in magenta, modelled on a scan of the engine and chassis"
+                width="1200"
+                height="873"
+                loading="lazy"
+              />
+              <dl class="title-block">
+                <div><dt>Part</dt><dd>LS engine mount</dd></div>
+                <div><dt>Scope</dt><dd>Designed on a scan of the bay</dd></div>
+              </dl>
             </article>
-            <article class="process-step reveal">
-              <span>02</span>
-              <h3>Design</h3>
-              <p>Layout and tube paths are planned for strength and fitment.</p>
-            </article>
-            <article class="process-step reveal">
-              <span>03</span>
-              <h3>Fabricate</h3>
-              <p>Every cut, bend, notch, and weld is handled in-house.</p>
-            </article>
-            <article class="process-step reveal">
-              <span>04</span>
-              <h3>Deliver</h3>
-              <p>Final checks, clean finish, and install-ready handoff.</p>
+            <article class="sheet reveal">
+              <img
+                class="render"
+                src="./assets/web/brackets.jpg"
+                alt="3D designed brackets and supports, modelled before fabrication"
+                width="1800"
+                height="708"
+                loading="lazy"
+              />
+              <dl class="title-block">
+                <div><dt>Part</dt><dd>Brackets and supports</dd></div>
+                <div><dt>Scope</dt><dd>3D designed, one-off</dd></div>
+              </dl>
             </article>
           </div>
+
+          <a
+            class="instagram reveal"
+            href="https://www.instagram.com/artsemfab/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div class="instagram-copy">
+              <p class="label">Instagram</p>
+              <h3>More builds on Instagram</h3>
+              <p>Cages going in, scans, and the cars once they're finished.</p>
+              <span class="btn btn-primary">See @artsemfab</span>
+            </div>
+            <div class="instagram-grid" aria-hidden="true">
+              <img src="./assets/web/track-build.jpg" alt="" width="1400" height="1052" loading="lazy" />
+              <img src="./assets/web/e90-build.jpg" alt="" width="1054" height="1400" loading="lazy" />
+              <img src="./assets/web/frs-build.jpg" alt="" width="1600" height="900" loading="lazy" />
+              <img src="./assets/web/ls-mount.jpg" alt="" width="1200" height="873" loading="lazy" />
+            </div>
+          </a>
         </div>
       </section>
 
       <section id="about" class="section">
-        <div class="container about-wrap reveal">
-          <p class="eyebrow">About</p>
-          <h2>Built in Metal. Designed to Last.</h2>
-          <p>
-            I focus on custom cage fabrication with an obsession for symmetry,
-            fitment, weld quality, and execution. You get a build that looks
-            aggressive, feels intentional, and is made to perform.
-          </p>
+        <div class="container about-grid">
+          <div class="about-copy reveal">
+            <p class="label">About</p>
+            <h2>Artsem Vechar</h2>
+            <p>
+              Artsem is an automotive fabricator, welder and builder: roll cages,
+              chassis work, performance modifications and one-off parts. His rule
+              is that every cut, bend and weld should serve a purpose, and look
+              right doing it.
+            </p>
+            <p>
+              Scanning and 3D design are how he holds himself to that. Fitment is
+              settled on the model, so the shop time goes into building it well.
+            </p>
+          </div>
+          <img
+            class="render about-sketch reveal"
+            src="./assets/web/z3-sketch.jpg"
+            alt="Line drawing of a BMW Z3 M Coupe"
+            width="1200"
+            height="800"
+            loading="lazy"
+          />
         </div>
       </section>
 
-      <section id="contact" class="section">
-        <div class="container contact-card reveal">
-          <div class="contact-copy">
-            <p class="eyebrow">Let’s Build</p>
-            <h2>Ready to start your project?</h2>
+      <section id="pricing" class="section">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="label">Pricing</p>
+            <h2>What a cage costs</h2>
             <p>
-              Send me details about your vehicle and what you need fabricated.
-              I will reply with next steps and timing.
+              The numbers up front, so you know where your build lands before you
+              ask.
             </p>
-            <a
-              class="btn btn-ghost"
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              >Instagram</a
-            >
+          </header>
+
+          <div class="price-sheet reveal">
+            <table class="price-table">
+              <tbody>
+                <tr>
+                  <th scope="row">Shop rate</th>
+                  <td><span class="price">$125</span> per hour</td>
+                </tr>
+                <tr>
+                  <th scope="row">Cage, MIG welded</th>
+                  <td><span class="price">$6,000&ndash;8,000</span> typical</td>
+                </tr>
+                <tr>
+                  <th scope="row">Cage, TIG welded</th>
+                  <td><span class="price">$10,000&ndash;12,000</span> typical</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="price-note">
+              TIG takes longer per joint, which is the difference between the two.
+              Where your cage falls in its range depends on the chassis and the
+              design.
+            </p>
           </div>
+        </div>
+      </section>
+
+      <section id="request" class="section request">
+        <div class="container request-grid">
+          <div class="request-copy reveal">
+            <p class="label">Request a build</p>
+            <h2>Tell me about your car</h2>
+            <ol class="next-steps">
+              <li>Send the vehicle, what it's for and when you need it.</li>
+              <li>I reply with scope, next steps and availability.</li>
+              <li>Scan, design, build.</li>
+            </ol>
+            <dl class="facts">
+              <div><dt>Lead time</dt><dd>2&ndash;4 weeks after final specs</dd></div>
+              <div>
+                <dt>Service area</dt>
+                <dd>Drop-off in Minnesota, shipping quotes nationwide</dd>
+              </div>
+            </dl>
+          </div>
+
           <form
-            class="contact-form"
-            action="https://formsubmit.co/kendrick.gmo@gmail.com"
+            class="request-form reveal"
+            action="https://formsubmit.co/artsemfab@gmail.com"
             method="POST"
             id="contact-form"
           >
@@ -184,34 +393,46 @@
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
 
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" required />
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field field-wide">
+              <label for="vehicle">Vehicle</label>
+              <input id="vehicle" name="vehicle" type="text" placeholder="Year, make, model" />
+            </div>
+            <div class="field field-wide">
+              <label for="details">Project details</label>
+              <textarea
+                id="details"
+                name="details"
+                rows="5"
+                placeholder="Full or half cage, street, track, drift or a class you race in, and anything already in the car."
+                required
+              ></textarea>
+            </div>
 
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required />
-
-            <label for="vehicle">Vehicle</label>
-            <input id="vehicle" name="vehicle" type="text" />
-
-            <label for="details">Project details</label>
-            <textarea
-              id="details"
-              name="details"
-              rows="4"
-              placeholder="Tell me what you want built."
-              required
-            ></textarea>
-
-            <button class="btn btn-primary" type="submit">Send Inquiry</button>
-            <p id="contact-form-status" class="contact-form-status" aria-live="polite"></p>
+            <div class="form-foot">
+              <button class="btn btn-primary" type="submit">Send build request</button>
+              <p id="contact-form-status" class="contact-form-status" aria-live="polite"></p>
+            </div>
           </form>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-wrap">
-        <p>© <span id="year"></span> artsemfab. All rights reserved.</p>
+      <div class="container">
+        <dl class="footer-block">
+          <div class="footer-name"><dt>Shop</dt><dd>ARTSEMFAB</dd></div>
+          <div><dt>Drawn by</dt><dd>A. Vechar</dd></div>
+          <div><dt>Location</dt><dd>Minnesota, USA</dd></div>
+          <div><dt>Rev.</dt><dd>&copy; <span id="year"></span></dd></div>
+        </dl>
       </div>
     </footer>
 

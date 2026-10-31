@@ -22,6 +22,41 @@ if ("IntersectionObserver" in window && revealNodes.length > 0) {
   revealNodes.forEach((node) => node.classList.add("is-visible"));
 }
 
+const menuToggle = document.querySelector(".menu-toggle");
+const siteNav = document.getElementById("site-nav");
+
+if (menuToggle && siteNav) {
+  const closeMenu = () => {
+    menuToggle.classList.remove("is-open");
+    siteNav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open menu");
+  };
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = siteNav.classList.toggle("is-open");
+    menuToggle.classList.toggle("is-open", isOpen);
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!siteNav.contains(event.target) && !menuToggle.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) {
+      closeMenu();
+    }
+  });
+}
+
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {
   const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -79,7 +114,7 @@ if (contactForm) {
     } catch (error) {
       if (statusNode) {
         statusNode.textContent =
-          "Could not send right now. Please try again or email me directly.";
+          "Could not send right now. Please try again, or message me on Instagram.";
         statusNode.classList.add("is-error");
       }
     } finally {
