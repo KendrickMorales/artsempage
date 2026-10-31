@@ -1,0 +1,7 @@
+# Keep the pages.dev addresses (production and every preview build) out of search results, so
+# artsemfabs.com is the only address that gets indexed once it is attached.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
