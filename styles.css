@@ -59,10 +59,11 @@ img {
   height: auto;
 }
 
-/* The scans and drawings are white-ground renders; multiplied, the white becomes the paper and
-   the cage sits on the sheet like a drawing rather than in a box. */
-.render {
-  mix-blend-mode: multiply;
+/* Every image is cut out of its background (scripts/cut-out-images.py), so scans, photos and
+   drawings all sit straight on the paper rather than in boxes of their own. Contain, never
+   cover: cropping a cutout would slice the car. */
+.cutout {
+  object-fit: contain;
 }
 
 h1,
@@ -359,14 +360,9 @@ a {
 
 .hero-sheet {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas:
-    "scan scan"
-    "dim build"
-    "cap build";
-  grid-template-rows: auto auto 1fr;
-  column-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   margin: 0;
   padding: 20px;
   border: 1px solid var(--line);
@@ -395,61 +391,146 @@ a {
   border-width: 0 3px 3px 0;
 }
 
-.view {
+/* The scan and the finished car share one frame. --p (0 to 1, set by script.js from the range
+   input laid over the frame) wipes left to right: the car as built behind the line, the scan
+   ahead of it. */
+.morph {
+  --p: 0;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  aspect-ratio: 3 / 2;
 }
 
-.view-scan {
-  grid-area: scan;
-}
-
-.view-build {
-  grid-area: build;
-}
-
-.view-build img {
+.morph img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border: 1px solid var(--line);
+  height: 100%;
 }
 
-.view-tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+.morph-scan {
+  clip-path: inset(0 0 0 calc(var(--p) * 100%));
 }
 
-.hero-sheet .dim {
-  grid-area: dim;
-  margin-top: 18px;
+.morph-build {
+  clip-path: inset(0 calc((1 - var(--p)) * 100%) 0 0);
+}
+
+.morph-line {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: calc(var(--p) * 100%);
+  width: 3px;
+  margin-left: -1px;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+/* The grip on the line: a small yellow dot with a double arrow, enough to say it can be dragged.
+   It only marks the spot; the range input's thumb below is the wider target a finger lands on. */
+.morph-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease;
+}
+
+.morph-handle::before {
+  content: "";
+  width: 12px;
+  height: 7px;
+  background: var(--ink);
+  clip-path: polygon(0 50%, 35% 0, 35% 35%, 65% 35%, 65% 0, 100% 50%, 65% 100%, 65% 65%, 35% 65%, 35% 100%);
+}
+
+.morph:hover .morph-handle,
+.morph-control:active ~ .morph-line .morph-handle {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.morph-control:focus-visible + .morph-line .morph-handle,
+.morph:has(.morph-control:focus-visible) .morph-handle {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* The control itself is a native range input stretched over the whole frame and made invisible:
+   it brings dragging, tapping, touch and the arrow keys with it, and screen readers announce it.
+   Its thumb spans the frame's height so a press anywhere along the line catches it. */
+.morph-control {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y; /* a vertical swipe over the frame still scrolls the page on a phone */
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.morph-control::-webkit-slider-thumb {
+  width: 48px;
+  height: 100vh;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.morph-control::-moz-range-thumb {
+  width: 48px;
+  height: 100vh;
+  border: 0;
 }
 
 .hero-caption {
-  grid-area: cap;
-  align-self: end;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 18px;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.hero-caption span:first-child {
+.hero-car {
   font-family: var(--font-display);
   font-stretch: 62%;
   font-weight: 800;
   font-size: 2.4rem;
   line-height: 1;
-  letter-spacing: 0;
+}
+
+/* The two view names sit in one place and swap at the halfway point. */
+.morph-tags {
+  display: grid;
+  justify-items: end;
+}
+
+.morph-tag {
+  grid-area: 1 / 1;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: opacity 0.2s ease;
+}
+
+.morph-tag-build,
+.is-built .morph-tag-scan {
+  opacity: 0;
+}
+
+.is-built .morph-tag-build {
+  opacity: 1;
 }
 
 /* ---------- Sections ---------- */
@@ -492,12 +573,6 @@ a {
 .step img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: contain;
-}
-
-.step img:not(.render) {
-  object-fit: cover;
-  border: 1px solid var(--line);
 }
 
 .step-text {
@@ -545,11 +620,6 @@ a {
 .sheet img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.sheet img.render {
-  object-fit: contain;
   padding: 12px;
 }
 
@@ -565,6 +635,18 @@ a {
 
 .sheets-two .sheet img {
   aspect-ratio: 16 / 10;
+}
+
+/* The fabrication parts keep their own white-ground renders, shown whole on white. The LS mount
+   is drawn on its engine bay edge to edge, so it fills the frame instead. */
+.sheet img.plain {
+  padding: 0;
+  background: #fff;
+  object-fit: contain;
+}
+
+.sheet img.plain-cover {
+  object-fit: cover;
 }
 
 .title-block {
@@ -660,7 +742,6 @@ a {
 .instagram-grid img {
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
 }
 
 .instagram:focus-visible {
@@ -1079,10 +1160,9 @@ a {
 @media (max-width: 480px) {
   .hero-sheet {
     padding: 14px;
-    column-gap: 14px;
   }
 
-  .hero-caption span:first-child {
+  .hero-car {
     font-size: 1.8rem;
   }
 }

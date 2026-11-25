@@ -22,6 +22,21 @@ if ("IntersectionObserver" in window && revealNodes.length > 0) {
   revealNodes.forEach((node) => node.classList.add("is-visible"));
 }
 
+/* The hero's scan-to-build comparison: the range input over the frame drives the wipe. */
+const morphSheet = document.querySelector("[data-morph]");
+const morphControl = morphSheet && morphSheet.querySelector(".morph-control");
+
+if (morphControl) {
+  const morph = morphSheet.querySelector(".morph");
+  const updateMorph = () => {
+    const progress = Number(morphControl.value) / 100;
+    morph.style.setProperty("--p", String(progress));
+    morphSheet.classList.toggle("is-built", progress >= 0.5);
+  };
+  morphControl.addEventListener("input", updateMorph);
+  updateMorph();
+}
+
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.getElementById("site-nav");
 

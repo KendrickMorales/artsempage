@@ -64,31 +64,44 @@
             </div>
           </div>
 
-          <figure class="hero-sheet">
-            <div class="view view-scan">
-              <span class="view-tag">View A &middot; Scan + CAD</span>
+          <!-- Dragging the line wipes the scan away to the cage as built (script.js sets --p). -->
+          <figure class="hero-sheet" data-morph>
+            <div class="morph">
               <img
-                class="render"
-                src="./assets/web/e90-scan.jpg"
+                class="cutout morph-scan"
+                src="./assets/web/e90-scan.webp"
                 alt="3D scan of a BMW E90 shell with the custom cage modelled inside it"
-                width="1800"
-                height="919"
+                width="1519"
+                height="708"
                 fetchpriority="high"
               />
-            </div>
-            <div class="view view-build">
               <img
-                src="./assets/web/e90-build.jpg"
+                class="cutout morph-build"
+                src="./assets/web/e90-build-wide.webp"
                 alt="The finished cage welded into the same E90"
-                width="1054"
-                height="1400"
+                width="1048"
+                height="802"
               />
-              <span class="view-tag">View B &middot; As built</span>
+              <span class="morph-line" aria-hidden="true">
+              <span class="morph-handle"></span>
+            </span>
+            <input
+              class="morph-control"
+              type="range"
+              min="0"
+              max="100"
+              step="any"
+              value="0"
+              aria-label="Compare the scan with the finished car: 0 is the 3D scan, 100 the car as built"
+            />
             </div>
             <div class="dim" aria-hidden="true"><span>Same chassis</span></div>
             <figcaption class="hero-caption">
-              <span>BMW E90</span>
-              <span>Scan &rarr; design &rarr; build</span>
+              <span class="hero-car">BMW E90</span>
+              <span class="morph-tags" aria-hidden="true">
+                <span class="morph-tag morph-tag-scan">View A &middot; Scan + CAD</span>
+                <span class="morph-tag morph-tag-build">View B &middot; As built</span>
+              </span>
             </figcaption>
           </figure>
         </div>
@@ -109,11 +122,11 @@
           <ol class="steps">
             <li class="step reveal">
               <img
-                class="render"
-                src="./assets/web/cup-scan.jpg"
+                class="cutout"
+                src="./assets/web/cup-scan.webp"
                 alt="Scanned cup car shell with its cage modelled in red"
-                width="1600"
-                height="970"
+                width="1317"
+                height="891"
                 loading="lazy"
               />
               <div class="step-text">
@@ -127,11 +140,11 @@
             </li>
             <li class="step reveal">
               <img
-                class="render"
-                src="./assets/web/porsche-scan.jpg"
+                class="cutout"
+                src="./assets/web/porsche-scan.webp"
                 alt="Porsche shell scan with a full cage designed against it"
-                width="1600"
-                height="926"
+                width="1285"
+                height="722"
                 loading="lazy"
               />
               <div class="step-text">
@@ -146,10 +159,11 @@
             </li>
             <li class="step reveal">
               <img
-                src="./assets/web/frs-build.jpg"
+                class="cutout"
+                src="./assets/web/frs-build.webp"
                 alt="Finished cage welded into an FR-S"
-                width="1600"
-                height="900"
+                width="1198"
+                height="892"
                 loading="lazy"
               />
               <div class="step-text">
@@ -176,10 +190,11 @@
           <div class="sheets">
             <article class="sheet sheet-tall reveal">
               <img
-                src="./assets/web/e90-build.jpg"
+                class="cutout"
+                src="./assets/web/e90-build.webp"
                 alt="Custom cage welded into a BMW E90, seen through the door opening"
-                width="1054"
-                height="1400"
+                width="1046"
+                height="1277"
                 loading="lazy"
               />
               <dl class="title-block">
@@ -189,10 +204,11 @@
             </article>
             <article class="sheet reveal">
               <img
-                src="./assets/web/frs-build.jpg"
+                class="cutout"
+                src="./assets/web/frs-build.webp"
                 alt="Cage with door bars inside a white FR-S"
-                width="1600"
-                height="900"
+                width="1198"
+                height="892"
                 loading="lazy"
               />
               <dl class="title-block">
@@ -202,10 +218,11 @@
             </article>
             <article class="sheet reveal">
               <img
-                src="./assets/web/track-build.jpg"
+                class="cutout"
+                src="./assets/web/track-build.webp"
                 alt="Cage in an orange track car, seen from the rear with the seat fitted"
-                width="1400"
-                height="1052"
+                width="1392"
+                height="890"
                 loading="lazy"
               />
               <dl class="title-block">
@@ -215,11 +232,11 @@
             </article>
             <article class="sheet reveal">
               <img
-                class="render"
-                src="./assets/web/porsche-scan.jpg"
+                class="cutout"
+                src="./assets/web/porsche-scan.webp"
                 alt="Porsche shell scan with its cage design"
-                width="1600"
-                height="926"
+                width="1285"
+                height="722"
                 loading="lazy"
               />
               <dl class="title-block">
@@ -229,11 +246,11 @@
             </article>
             <article class="sheet reveal">
               <img
-                class="render"
-                src="./assets/web/cup-scan.jpg"
+                class="cutout"
+                src="./assets/web/cup-scan.webp"
                 alt="Cup car shell scan with its cage design"
-                width="1600"
-                height="970"
+                width="1317"
+                height="891"
                 loading="lazy"
               />
               <dl class="title-block">
@@ -247,6 +264,7 @@
           <div class="sheets sheets-two">
             <article class="sheet reveal">
               <img
+                class="plain plain-cover"
                 src="./assets/web/ls-mount.jpg"
                 alt="Custom LS engine mount, shown in magenta, modelled on a scan of the engine and chassis"
                 width="1200"
@@ -260,7 +278,7 @@
             </article>
             <article class="sheet reveal">
               <img
-                class="render"
+                class="plain"
                 src="./assets/web/brackets.jpg"
                 alt="3D designed brackets and supports, modelled before fabrication"
                 width="1800"
@@ -287,10 +305,10 @@
               <span class="btn btn-primary">See @artsemfab</span>
             </div>
             <div class="instagram-grid" aria-hidden="true">
-              <img src="./assets/web/track-build.jpg" alt="" width="1400" height="1052" loading="lazy" />
-              <img src="./assets/web/e90-build.jpg" alt="" width="1054" height="1400" loading="lazy" />
-              <img src="./assets/web/frs-build.jpg" alt="" width="1600" height="900" loading="lazy" />
-              <img src="./assets/web/ls-mount.jpg" alt="" width="1200" height="873" loading="lazy" />
+              <img class="cutout" src="./assets/web/track-build.webp" alt="" width="1392" height="890" loading="lazy" />
+              <img class="cutout" src="./assets/web/e90-build.webp" alt="" width="1046" height="1277" loading="lazy" />
+              <img class="cutout" src="./assets/web/frs-build.webp" alt="" width="1198" height="892" loading="lazy" />
+              <img class="cutout" src="./assets/web/ls-mount.webp" alt="" width="430" height="645" loading="lazy" />
             </div>
           </a>
         </div>
@@ -313,11 +331,11 @@
             </p>
           </div>
           <img
-            class="render about-sketch reveal"
-            src="./assets/web/z3-sketch.jpg"
+            class="cutout about-sketch reveal"
+            src="./assets/web/z3-sketch.webp"
             alt="Line drawing of a BMW Z3 M Coupe"
-            width="1200"
-            height="800"
+            width="1087"
+            height="460"
             loading="lazy"
           />
         </div>
