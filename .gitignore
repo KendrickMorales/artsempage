@@ -1,3 +1,4 @@
 # Local cache written by the Cloudflare cf CLI
 .cloudflare/
 .DS_Store
+.venv/
